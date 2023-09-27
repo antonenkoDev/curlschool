@@ -8,7 +8,8 @@
         "eslint:recommended",
         "plugin:@typescript-eslint/recommended",
         "plugin:@angular-eslint/recommended",
-        "plugin:@angular-eslint/template/process-inline-templates"
+        "plugin:@angular-eslint/template/process-inline-templates",
+        "plugin:prettier/recommended" // Make sure this is the last configuration in the extends array.
       ],
       "rules": {
         "@angular-eslint/directive-selector": [
@@ -32,18 +33,14 @@
           {
             "suffixes": ["Component", "Container"]
           }
-        ]
+        ],
+        "prettier/prettier": ["error", { "singleQuote": true, "printWidth": 120 }]
       }
     },
     {
       "files": ["*.html"],
-      "extends": [
-        "plugin:@angular-eslint/recommended",
-        "plugin:prettier/recommended" // Make sure this is the last configuration in the extends array.
-      ],
-      "rules": {
-        "prettier/prettier": ["error", { "singleQuote": true, "printWidth": 120 }]
-      }
+      "extends": ["plugin:@angular-eslint/template/recommended"],
+      "rules": {}
     }
   ]
 }
