@@ -24,7 +24,7 @@
           "error",
           {
             "type": "element",
-            "prefix": "dms",
+//            "prefix": "",
             "style": "kebab-case"
           }
         ],

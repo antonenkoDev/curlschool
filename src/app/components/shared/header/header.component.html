@@ -1,1 +1,68 @@
-<p>header works!</p>
+<nav class="bg-gray-800 p-4 text-white">
+  <div class="container mx-auto flex items-center">
+    <!-- Logo -->
+    <div class="flex-shrink-0">
+      <img src="/assets/logo_dark.png" class="h-16 mr-3" alt="Академія Створення Локонів" />
+    </div>
+
+    <!-- Spacer to push the logo to the left and menu to the center -->
+    <div class="flex-grow"></div>
+
+    <!-- Centered Menu for Larger Screens -->
+    <div class="hidden md:flex space-x-4">
+      <ul class="flex space-x-4">
+        <li *ngFor="let item of navItems">
+          <a [routerLink]="item.path" class="hover:text-gray-400"
+             [ngClass]="{'text-gray-300': item.children && item.children.length}">
+            {{ item.data?.title }}
+          </a>
+          <!-- Displaying Child Routes when Parent is Active -->
+          <ng-container *ngIf="router.isActive(item.path ?? '', true) && item.children">
+            <ul class="flex space-x-4 ml-4">
+              <li *ngFor="let child of item.children">
+                <a [routerLink]="[item.path, child.path]" class="hover:text-gray-400">
+                  {{ child.data?.title }}
+                </a>
+              </li>
+            </ul>
+          </ng-container>
+        </li>
+      </ul>
+    </div>
+
+    <!-- Spacer to push the menu to the center and hamburger menu to the right -->
+    <div class="flex-grow"></div>
+
+    <!-- Hamburger Menu for Mobile View -->
+    <div class="md:hidden">
+      <button (click)="toggleMenu()" class="focus:outline-none">
+        <span class="block h-0.5 w-6 bg-current transform transition duration-500 ease-in-out"
+              [ngClass]="{'rotate-45 translate-y-1.5': isMenuOpen, 'mb-1.5': !isMenuOpen}"></span>
+        <span class="block h-0.5 w-6 bg-current mb-1.5 transform transition duration-500 ease-in-out"
+              [ngClass]="{'opacity-0': isMenuOpen}"></span>
+        <span class="block h-0.5 w-6 bg-current transform transition duration-500 ease-in-out"
+              [ngClass]="{'-rotate-45 -translate-y-1.5': isMenuOpen, 'mb-1.5': !isMenuOpen}"></span>
+      </button>
+    </div>
+  </div>
+
+  <!-- Mobile Menu Dropdown/Sidebar -->
+  <div class="md:hidden" *ngIf="isMenuOpen">
+    <ul class="flex flex-col space-y-2 mt-4">
+      <li *ngFor="let item of navItems">
+        <a [routerLink]="item.path" class="hover:text-gray-400" (click)="toggleMenu()">
+          {{ item.data?.title }}
+        </a>
+
+        <!-- Show Child Routes if Any -->
+        <ul *ngIf="router.isActive(item.path ?? '', true) && item.children" class="ml-4 mt-2">
+          <li *ngFor="let child of item.children" class="mb-2">
+            <a [routerLink]="[item.path, child.path]" class="hover:text-gray-400" (click)="toggleMenu()">
+              {{ child.data?.title }}
+            </a>
+          </li>
+        </ul>
+      </li>
+    </ul>
+  </div>
+</nav>

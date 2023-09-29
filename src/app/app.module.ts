@@ -7,11 +7,13 @@ import { FooterComponent } from './components/shared/footer/footer.component';
 import { OrderFormComponent } from './components/shared/order-form/order-form.component';
 import { HomeComponent } from './components/pages/home/home.component';
 import { OnlineComponent } from './components/pages/online/online.component';
-import { ExpertComponent } from './components/pages/online/courses/expert/expert.component';
-import { RouterOutlet } from "@angular/router";
-import {CommonModule} from "@angular/common";
+import { ExpertCourseComponent } from './components/pages/online/courses/expert/expert.component';
+import { RouterOutlet } from '@angular/router';
+import { CommonModule } from '@angular/common';
 import { AppRoutingModule } from './app-routing.module';
-
+import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
+import { CoachCourseComponent } from './components/pages/online/courses/coach/coach.component';
+import { BusinessCourseComponent } from './components/pages/online/courses/business/business.component';
 
 @NgModule({
   declarations: [
@@ -21,16 +23,12 @@ import { AppRoutingModule } from './app-routing.module';
     OrderFormComponent,
     HomeComponent,
     OnlineComponent,
-    ExpertComponent,
-
+    ExpertCourseComponent,
+    CoachCourseComponent,
+    BusinessCourseComponent,
   ],
-  imports: [
-    CommonModule,
-    BrowserModule,
-    RouterOutlet,
-    AppRoutingModule,
-  ],
+  imports: [CommonModule, BrowserModule, RouterOutlet, AppRoutingModule, BrowserAnimationsModule],
   providers: [],
-  bootstrap: [AppComponent]
+  bootstrap: [AppComponent],
 })
-export class AppModule { }
+export class AppModule {}
