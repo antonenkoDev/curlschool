@@ -9,11 +9,13 @@ import { HomeComponent } from './components/pages/home/home.component';
 import { OnlineComponent } from './components/pages/online/online.component';
 import { ExpertCourseComponent } from './components/pages/online/courses/expert/expert.component';
 import { RouterOutlet } from '@angular/router';
-import { CommonModule } from '@angular/common';
+import { CommonModule, NgOptimizedImage } from '@angular/common';
 import { AppRoutingModule } from './app-routing.module';
 import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
 import { CoachCourseComponent } from './components/pages/online/courses/coach/coach.component';
 import { BusinessCourseComponent } from './components/pages/online/courses/business/business.component';
+import { AnimatedArrowComponent } from './components/shared/elements/animated-arrow/animated-arrow.component';
+import { CarouselComponent } from './components/shared/elements/carousel/carousel.component';
 
 @NgModule({
   declarations: [
@@ -26,8 +28,10 @@ import { BusinessCourseComponent } from './components/pages/online/courses/busin
     ExpertCourseComponent,
     CoachCourseComponent,
     BusinessCourseComponent,
+    AnimatedArrowComponent,
+    CarouselComponent,
   ],
-  imports: [CommonModule, BrowserModule, RouterOutlet, AppRoutingModule, BrowserAnimationsModule],
+  imports: [CommonModule, BrowserModule, RouterOutlet, AppRoutingModule, BrowserAnimationsModule, NgOptimizedImage],
   providers: [],
   bootstrap: [AppComponent],
 })

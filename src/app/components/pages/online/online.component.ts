@@ -3,8 +3,6 @@ import { Component } from '@angular/core';
 @Component({
   selector: 'app-online',
   templateUrl: './online.component.html',
-  styleUrls: ['./online.component.css']
+  styleUrls: ['./online.component.css'],
 })
-export class OnlineComponent {
-
-}
+export class OnlineComponent {}
