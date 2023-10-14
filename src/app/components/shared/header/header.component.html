@@ -1,68 +1,63 @@
-<nav class="bg-gray-800 p-4 text-white">
-  <div class="container mx-auto flex items-center">
-    <!-- Logo -->
-    <div class="flex-shrink-0">
+<div class="bg-gray-800 z-10">
+  <nav class="mx-auto flex max-w-7xl items-center justify-between p-6 lg:px-8" aria-label="Global">
+    <div class="flex items-center">
+      <!-- Logo or Branding -->
       <img src="/assets/logo_dark.png" class="h-16 mr-3" alt="Академія Створення Локонів" />
     </div>
-
-    <!-- Spacer to push the logo to the left and menu to the center -->
-    <div class="flex-grow"></div>
-
-    <!-- Centered Menu for Larger Screens -->
-    <div class="hidden md:flex space-x-4">
+    <div class="lg:hidden">
+      <button (click)="toggleMenu()" type="button" class="text-gray-400">
+        <span class="sr-only">Open main menu</span>
+        <span>Menu</span>
+      </button>
+    </div>
+    <div class="hidden lg:flex lg:gap-x-12 relative">
       <ul class="flex space-x-4">
-        <li *ngFor="let item of navItems">
-          <a [routerLink]="item.path" class="hover:text-gray-400"
-             [ngClass]="{'text-gray-300': item.children && item.children.length}">
+        <li *ngFor="let item of navItems" class="group relative">
+          <a [routerLink]="item.path" class="text-gray-400 hover:text-gray-300 py-2 px-4">
             {{ item.data?.title }}
           </a>
-          <!-- Displaying Child Routes when Parent is Active -->
-          <ng-container *ngIf="router.isActive(item.path ?? '', true) && item.children">
-            <ul class="flex space-x-4 ml-4">
-              <li *ngFor="let child of item.children">
-                <a [routerLink]="[item.path, child.path]" class="hover:text-gray-400">
-                  {{ child.data?.title }}
-                </a>
-              </li>
+
+          <!-- Desktop Submenu -->
+          <div *ngIf="item.children" class="absolute left-0 mt-1 w-48 rounded-md shadow-lg bg-white text-gray-800 z-10 group-hover:block hidden border-t border-transparent hover:border-gray-800">
+            <ul>
+              <ng-container *ngFor="let subItem of item.children; let first = first; let last = last">
+                <li>
+                  <a [routerLink]="subItem.path"
+                     class="block py-2 px-4 hover:bg-gray-400"
+                     [class.rounded-t-md]="first"
+                     [class.rounded-b-md]="last">
+                    {{ subItem.data?.title }}
+                  </a>
+                </li>
+              </ng-container>
             </ul>
-          </ng-container>
+          </div>
+
         </li>
       </ul>
     </div>
+  </nav>
 
-    <!-- Spacer to push the menu to the center and hamburger menu to the right -->
-    <div class="flex-grow"></div>
-
-    <!-- Hamburger Menu for Mobile View -->
-    <div class="md:hidden">
-      <button (click)="toggleMenu()" class="focus:outline-none">
-        <span class="block h-0.5 w-6 bg-current transform transition duration-500 ease-in-out"
-              [ngClass]="{'rotate-45 translate-y-1.5': isMenuOpen, 'mb-1.5': !isMenuOpen}"></span>
-        <span class="block h-0.5 w-6 bg-current mb-1.5 transform transition duration-500 ease-in-out"
-              [ngClass]="{'opacity-0': isMenuOpen}"></span>
-        <span class="block h-0.5 w-6 bg-current transform transition duration-500 ease-in-out"
-              [ngClass]="{'-rotate-45 -translate-y-1.5': isMenuOpen, 'mb-1.5': !isMenuOpen}"></span>
-      </button>
-    </div>
-  </div>
-
-  <!-- Mobile Menu Dropdown/Sidebar -->
-  <div class="md:hidden" *ngIf="isMenuOpen">
-    <ul class="flex flex-col space-y-2 mt-4">
+  <!-- Mobile menu -->
+  <div *ngIf="isMenuOpen" class="lg:hidden bg-gray-700 text-gray-300 p-4">
+    <ul>
       <li *ngFor="let item of navItems">
-        <a [routerLink]="item.path" class="hover:text-gray-400" (click)="toggleMenu()">
+        <a (click)="toggleSubMenu(item.path ?? '')" [routerLink]="item.path" class="block py-2 px-4 hover:bg-gray-600">
           {{ item.data?.title }}
         </a>
 
-        <!-- Show Child Routes if Any -->
-        <ul *ngIf="router.isActive(item.path ?? '', true) && item.children" class="ml-4 mt-2">
-          <li *ngFor="let child of item.children" class="mb-2">
-            <a [routerLink]="[item.path, child.path]" class="hover:text-gray-400" (click)="toggleMenu()">
-              {{ child.data?.title }}
-            </a>
-          </li>
-        </ul>
+        <!-- Mobile Submenu -->
+        <div *ngIf="item.children && openSubMenus[item?.path ?? '']" class="pl-4 mt-2">
+          <ul>
+            <li *ngFor="let subItem of item.children">
+              <a [routerLink]="subItem.path" class="block py-2 px-4 hover:bg-gray-600">
+                {{ subItem.data?.title }}
+              </a>
+            </li>
+          </ul>
+        </div>
+
       </li>
     </ul>
   </div>
-</nav>
+</div>
