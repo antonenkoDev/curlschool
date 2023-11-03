@@ -1,5 +1,4 @@
-import { Component, OnInit } from '@angular/core';
-import { Carousel, initTE } from 'tw-elements';
+import { Component } from '@angular/core';
 
 @Component({
   selector: 'app-root',
