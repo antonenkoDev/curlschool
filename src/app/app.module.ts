@@ -16,6 +16,7 @@ import { CoachCourseComponent } from './components/pages/online/courses/coach/co
 import { BusinessCourseComponent } from './components/pages/online/courses/business/business.component';
 import { AnimatedArrowComponent } from './components/shared/elements/animated-arrow/animated-arrow.component';
 import { CarouselComponent } from './components/shared/elements/carousel/carousel.component';
+import { CardComponent } from './components/shared/elements/card/card.component';
 
 @NgModule({
   declarations: [
@@ -30,6 +31,7 @@ import { CarouselComponent } from './components/shared/elements/carousel/carouse
     BusinessCourseComponent,
     AnimatedArrowComponent,
     CarouselComponent,
+    CardComponent,
   ],
   imports: [CommonModule, BrowserModule, RouterOutlet, AppRoutingModule, BrowserAnimationsModule, NgOptimizedImage],
   providers: [],

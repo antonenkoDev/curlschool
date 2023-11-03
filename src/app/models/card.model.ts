@@ -6,6 +6,8 @@ export interface Card {
   thesesList?: string[];
   buttonText?: string;
   buttonLink?: string;
+  priceInEuro?: number;
+  priceFromFlag?: boolean;
 }
 export interface CardDate {
   year?: string;
