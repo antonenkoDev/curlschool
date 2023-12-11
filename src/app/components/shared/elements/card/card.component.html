@@ -1,15 +1,23 @@
-<section class="flex flex-col items-center p-8 bg-gray-800 shadow-md ">
+<section class="flex flex-col items-center p-8 shadow-md ">
   <h2 class="text-2xl font-bold mb-6 text-white text-center">НАШІ ПРОГРАМИ НАВЧАННЯ</h2>
 
-  <article *ngFor="let card of cards" class="max-w-2xl flex flex-col sm:flex-row bg-white transition hover:shadow-xl mb-10">
+  <article *ngFor="let card of cards" class="relative max-w-2xl flex flex-col sm:flex-row bg-white transition hover:shadow-lg mb-10 rounded-xl overflow-hidden hover:shadow-white">
+
 
     <!-- Date sidebar -->
-    <div *ngIf="card.date" class="p-2 sm:rotate-180 sm:[writing-mode:_vertical-lr]">
+    <div *ngIf="card.date" class="p-2 sm:rotate-180 sm:[writing-mode:_vertical-lr] bg-opacity-50">
       <time datetime="2022-10-10" class="flex items-center justify-between gap-4 text-xs font-bold uppercase text-gray-900">
         <span *ngIf="card.date.year">{{ card.date.year }}</span>
         <span class="hidden sm:block w-px flex-1 bg-gray-900/10"></span>
         <span *ngIf="card.date.month && card.date.day">{{ card.date.day }} {{ card.date.month }}</span>
       </time>
+    </div>
+
+    <!-- Price -->
+    <div class="sm:absolute top-0 right-0 w-full sm:w-auto">
+      <span *ngIf="card.priceInEuro" class="bg-blue-400  text-sm font-bold text-gray-200 px-5 py-3 sm:rounded-bl-xl block text-right">
+            Ціна: <span *ngIf="card.priceFromFlag && card.priceInEuro">від </span>{{ convertEuroToUah(card.priceInEuro) }} грн
+          </span>
     </div>
 
     <!-- Image - we'll make it visible for all screen sizes and re-order it for mobile -->
@@ -32,28 +40,23 @@
         <div class="mt-2 line-clamp-8 text-sm/relaxed text-gray-700">
           <p>{{ card.description }}</p>
           <ul *ngIf="card.thesesList && card.thesesList.length > 0">
-            <li *ngFor="let these of card.thesesList">
-              <p>{{ these.toUpperCase() }}</p>
+            <li *ngFor="let these of card.thesesList" class="pb-3 sm:pb-0">
+              <p>{{ these }}</p>
             </li>
           </ul>
         </div>
       </div>
-      <div  class="sm:flex sm:items-end sm:justify-between">
-        <div>
-          <span *ngIf="card.priceInEuro" class="bg-yellow-300 px-3 py-1 text-sm font-bold text-gray-900">
-            Ціна: <span *ngIf="card.priceFromFlag">від </span>{{ convertEuroToUah(card.priceInEuro) }} грн
-          </span>
-        </div>
-        <div>
+<!--      <div  class="sm:flex sm:items-end sm:justify-between">-->
+        <div class="self-end">
           <a
             href="{{ card.buttonLink }}"
-            class="block bg-yellow-300 px-5 py-3 text-center text-xs font-bold uppercase text-gray-900 transition hover:bg-yellow-400"
+            class="block bg-yellow-300 px-5 py-3 text-center text-xs font-bold uppercase text-gray-900 transition hover:bg-yellow-400 sm:rounded-tl-xl"
           >
             {{ card.buttonText }}
           </a>
         </div>
       </div>
-    </div>
+<!--    </div>-->
 
   </article>
 

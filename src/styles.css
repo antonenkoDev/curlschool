@@ -1,3 +1,47 @@
 @tailwind base;
 @tailwind components;
 @tailwind utilities;
+
+body {
+  font-family: 'Raleway', 'sans-serif';
+  font-weight: 400; /* Используйте более тонкий вес */
+}
+
+.text-gray-900 {
+  color: #1a1a1a; /* Темный текст для контраста */
+}
+
+.text-gray-700 {
+  color: #4a4a4a; /* Светло-серый текст */
+}
+
+.bg-yellow-300 {
+  background-color: #fcd34d; /* Золотистые акценты */
+}
+
+.hover\:bg-yellow-400:hover {
+  background-color: #f8bf04; /* Темнее при наведении */
+  filter: drop-shadow(0 1px 2px rgb(0 0 0 / 0.1)) drop-shadow(0 1px 1px rgb(0 0 0 / 0.06));
+
+}
+
+
+.navbar{
+  position: absolute;
+  top: 0;
+  left: 0;
+}
+.navbar .menu-item{
+  padding-bottom: 10px;
+}
+.submenu {
+  margin-top: 10px;
+  opacity: 0;
+  visibility: hidden;
+  transition: opacity 0.3s ease, visibility 0.3s ease;
+}
+
+.menu-item:hover .submenu {
+  opacity: 1;
+  visibility: visible;
+}

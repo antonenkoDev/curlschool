@@ -1,4 +1,4 @@
-import { Component, numberAttribute } from '@angular/core';
+import { Component } from '@angular/core';
 import { Slide } from '../../../models/slide.model';
 import { Card } from '../../../models/card.model';
 import { convertEuroToUah } from '../../../helpers/convert-euro-to-uah';
@@ -34,6 +34,7 @@ export class HomeComponent {
       ],
       priceFromFlag: true,
       priceInEuro: 249,
+      date: { year: '2024', month: 'лютого', day: '12' },
     },
     {
       image: 'assets/home/images/seminars.jpg',
@@ -66,7 +67,7 @@ export class HomeComponent {
       priceInEuro: 10,
     },
     {
-      image: 'assets/home/images/seminars_abroad.jpg',
+      image: 'assets/home/images/seminars_abroad_alex.jpg',
       title: 'Виїздні семінари',
       buttonText: 'Детальніше',
       buttonLink: '/offline/adbroad',

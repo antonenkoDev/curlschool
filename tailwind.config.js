@@ -4,6 +4,9 @@ module.exports = {
 
   theme: {
     extend: {
+      fontFamily: {
+        sans: ['Raleway', 'sans-serif'],
+      },
       colors: {
         gold: '#DAA520',
         darkGrey: '#2C2C2C',
@@ -16,4 +19,5 @@ module.exports = {
       },
     },
   },
+  plugins: [require('daisyui')],
 };

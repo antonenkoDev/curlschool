@@ -1,29 +1,31 @@
-<div class="bg-gray-800 z-10">
+<div class="navbar bg-gray-800 z-10 bg-opacity-0">
   <nav class="mx-auto flex max-w-7xl items-center justify-between p-6 lg:px-8" aria-label="Global">
     <div class="flex items-center">
       <!-- Logo or Branding -->
       <img src="/assets/logo_dark.png" class="h-16 mr-3" alt="Академія Створення Локонів" />
     </div>
     <div class="lg:hidden">
-      <button (click)="toggleMenu()" type="button" class="text-gray-400">
+      <button (click)="toggleMenu()" type="button" class="text-white">
         <span class="sr-only">Open main menu</span>
         <span>Menu</span>
       </button>
     </div>
     <div class="hidden lg:flex lg:gap-x-12 relative">
       <ul class="flex space-x-4">
-        <li *ngFor="let item of navItems" class="group relative">
-          <a [routerLink]="item.path" class="text-gray-400 hover:text-gray-300 py-2 px-4">
+        <a *ngFor="let item of navItems"  [routerLink]="item.path" class="block px-4 py-2 text-base font-light text-white ">
+
+        <li class="group relative menu-item">
+<!--          <a  class="text-white hover:text-gray-300 py-2 px-4">-->
             {{ item.data?.title }}
-          </a>
 
           <!-- Desktop Submenu -->
-          <div *ngIf="item.children" class="absolute left-0 mt-1 w-48 rounded-md shadow-lg bg-white text-gray-800 z-10 group-hover:block hidden border-t border-transparent hover:border-gray-800">
+<!--          <div *ngIf="item.children" class="absolute left-0 mt-1 w-48 rounded-md shadow-lg bg-white text-gray-800 z-10 group-hover:block hidden border-t border-transparent hover:border-gray-800">-->
+          <div *ngIf="item.children" class="submenu absolute left-0 mt-1 w-48 rounded-md shadow-lg bg-black bg-opacity-70 text-white z-10 group-hover:block hidden">
             <ul>
               <ng-container *ngFor="let subItem of item.children; let first = first; let last = last">
                 <li>
                   <a [routerLink]="subItem.path"
-                     class="block py-2 px-4 hover:bg-gray-400"
+                     class="block px-4 py-2 text-base font-light text-white hover:bg-black hover:bg-opacity-90"
                      [class.rounded-t-md]="first"
                      [class.rounded-b-md]="last">
                     {{ subItem.data?.title }}
@@ -34,6 +36,8 @@
           </div>
 
         </li>
+        </a>
+
       </ul>
     </div>
   </nav>
